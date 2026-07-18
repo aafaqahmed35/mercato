@@ -2,47 +2,45 @@ const products = [];
 
 module.exports = class Product {
 
-    constructor(id, title) {
+    constructor(id, title, imageUrl, price, description) {
+        this.id = id;
+        this.title = title;
+        this.imageUrl = imageUrl;
+        this.price = price;
+        this.description = description;
+    }
 
-    this.id = id;
-    this.title = title;
+    save() {
 
-}
-   save() {
+        if (this.id) {
 
-    if (this.id) {
+            const productIndex = products.findIndex(
+                product => product.id === this.id
+            );
 
-        // Existing product → update it
+            products[productIndex] = this;
 
-        const productIndex = products.findIndex(
+        } else {
 
-            product => product.id === this.id
+            this.id = Math.random().toString();
 
+            products.push(this);
+        }
+    }
+
+    static update(id, title, imageUrl, price, description) {
+
+        const product = products.find(
+            product => product.id === id
         );
 
-        products[productIndex] = this;
-
-    } else {
-
-        // New product → generate ID and add it
-
-        this.id = Math.random().toString();
-
-        products.push(this);
-
+        if (product) {
+            product.title = title;
+            product.imageUrl = imageUrl;
+            product.price = price;
+            product.description = description;
+        }
     }
-
-}
-
-
-    static update(id, newTitle) {
-
-    const product = products.find(product => product.id === id);
-
-    if (product) {
-        product.title = newTitle;
-    }
-}
 
     static fetchAll() {
 
@@ -51,24 +49,20 @@ module.exports = class Product {
 
     static findById(id) {
 
-        // Find and return the product with the matching ID
-        return products.find(product => product.id === id);
+        return products.find(
+            product => product.id === id
+        );
     }
 
     static deleteById(id) {
 
-    const productIndex = products.findIndex(
+        const productIndex = products.findIndex(
+            product => product.id === id
+        );
 
-        product => product.id === id
-
-    );
-
-    if (productIndex >= 0) {
-
-        products.splice(productIndex, 1);
-
+        if (productIndex >= 0) {
+            products.splice(productIndex, 1);
+        }
     }
-
-}
 
 };

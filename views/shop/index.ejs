@@ -19,57 +19,55 @@
 
                     </header>
 
+                    <div class="card__image">
+
+                        <img
+                            src="<%= product.imageUrl %>"
+                            alt="<%= product.title %>"
+                        >
+
+                    </div>
+
+                    <div class="card__content">
+
+                        <h2 class="product__price">
+                            $<%= product.price.toFixed(2) %>
+                        </h2>
+
+                        <p class="product__description">
+                            <%= product.description %>
+                        </p>
+
+                    </div>
+
                     <div class="card__actions">
 
-    <!-- Product Details -->
+                        <a
+                            href="/products/<%= product.id %>"
+                            class="btn"
+                        >
+                            Details
+                        </a>
 
-    <a
+                        <a
+                            href="/admin/edit-product/<%= product.id %>"
+                            class="btn"
+                        >
+                            Edit
+                        </a>
 
-        href="/products/<%= product.id %>"
+                        <form
+                            action="/admin/delete-product/<%= product.id %>"
+                            method="POST"
+                            class="delete-form"
+                        >
+                            <button class="btn" type="submit">
+                                Delete
+                            </button>
 
-        class="btn"
+                        </form>
 
-    >
-
-        Details
-
-    </a>
-
-    <!-- Edit Product -->
-
-    <a
-
-        href="/admin/edit-product/<%= product.id %>"
-
-        class="btn"
-
-    >
-
-        Edit
-
-    </a>
-
-    <!-- Delete Product -->
-
-    <form
-
-        action="/admin/delete-product/<%= product.id %>"
-
-        method="POST"
-
-        class="delete-form"
-
-    >
-
-        <button class="btn" type="submit">
-
-            <u>Delete</u>
-
-        </button>
-
-    </form>
-
-</div>
+                    </div>
 
                 </article>
 

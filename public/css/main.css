@@ -1,138 +1,896 @@
+/* =========================================================
+   MERCATO — GLOBAL DESIGN SYSTEM
+========================================================= */
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+
+    /* BACKGROUNDS */
+
+    --cream: #f7f3ec;
+
+    --cream-deep: #eee7dc;
+
+    --surface: #fffdf9;
+
+    --surface-warm: #faf6ef;
+
+
+    /* TEXT */
+
+    --espresso: #29221d;
+
+    --espresso-soft: #4a4038;
+
+    --muted: #80746a;
+
+
+    /* PRIMARY BRAND COLOR */
+
+    --terracotta: #b85c3f;
+
+    --terracotta-dark: #93452f;
+
+    --terracotta-soft: #f2ddd4;
+
+
+    /* SECONDARY ACCENT */
+
+    --sage: #71806b;
+
+    --sage-dark: #596653;
+
+    --sage-soft: #e6ebe2;
+
+
+    /* GOLD ACCENT */
+
+    --gold: #c4944b;
+
+
+    /* BORDERS */
+
+    --border: #e3dbd0;
+
+    --border-dark: #d3c7ba;
+
+
+    /* DANGER */
+
+    --danger: #a94438;
+
+    --danger-dark: #84352d;
+
+
+    /* BORDER RADIUS */
+
+    --radius-sm: 8px;
+
+    --radius-md: 14px;
+
+    --radius-lg: 20px;
+
+
+    /* SHADOWS */
+
+    --shadow-sm:
+        0 2px 8px rgba(50, 40, 30, 0.05);
+
+    --shadow-md:
+        0 8px 28px rgba(50, 40, 30, 0.08);
+
+    --shadow-lg:
+        0 18px 50px rgba(50, 40, 30, 0.12);
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    background-color: #f7f1ea;
-    color: #5f5148;
+
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(184, 92, 63, 0.06),
+            transparent 30rem
+        ),
+        var(--cream);
+
+    color: var(--espresso);
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    line-height: 1.6;
 }
 
-/* ================= HEADER ================= */
+
+/* =========================================================
+   HEADER / NAVBAR
+========================================================= */
 
 .main-header {
+
     width: 100%;
-    height: 4rem;
-    background-color: #e9cfc8;
+
+    height: 88px;
+
     display: flex;
+
     align-items: center;
-    padding: 0 2rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+
+    padding: 0 5%;
+
+    background:
+        rgba(255, 253, 249, 0.94);
+
+    border-bottom:
+        1px solid rgba(211, 199, 186, 0.75);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+    backdrop-filter: blur(16px);
+
+    -webkit-backdrop-filter: blur(16px);
 }
+
 
 .main-header__nav {
+
     width: 100%;
+
+    max-width: 1240px;
+
+    height: 100%;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
 }
+
+
+/* =========================================================
+   MERCATO LOGO
+========================================================= */
+
+.brand {
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    flex-shrink: 0;
+
+    text-decoration: none;
+}
+
+
+.brand__image {
+
+    display: block;
+
+    width: auto;
+
+    height: 72px;
+
+    object-fit: contain;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+.brand:hover .brand__image {
+
+    transform: translateY(-1px);
+
+    opacity: 0.92;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
 .main-header__item-list {
+
     display: flex;
+
+    align-items: center;
+
     list-style: none;
-    gap: 2rem;
+
+    gap: 2.2rem;
 }
+
 
 .main-header__item a {
+
+    position: relative;
+
+    color: var(--muted);
+
     text-decoration: none;
-    color: #5f5148;
-    font-weight: 600;
-    transition: 0.3s;
+
+    font-size: 0.94rem;
+
+    font-weight: 650;
+
+    transition:
+        color 0.2s ease;
 }
 
-.main-header__item a:hover,
-.main-header__item a:active,
+
+.main-header__item a:hover {
+
+    color: var(--terracotta);
+}
+
+
 .main-header__item a.active {
-    color: #fff;
+
+    color: var(--terracotta);
 }
 
-/* ================= MAIN ================= */
+
+.main-header__item a.active::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: -10px;
+
+    height: 2px;
+
+    border-radius: 10px;
+
+    background: var(--terracotta);
+}
+
+
+/* =========================================================
+   MAIN LAYOUT
+========================================================= */
 
 main {
+
     width: 90%;
-    max-width: 900px;
-    margin: 2rem auto;
+
+    max-width: 1240px;
+
+    margin: 3.5rem auto 5rem;
 }
 
-h1 {
-    margin-bottom: 1rem;
+
+main > h1 {
+
+    margin-bottom: 2rem;
+
+    color: var(--espresso);
+
+    font-size:
+        clamp(1.8rem, 4vw, 2.6rem);
+
+    line-height: 1.15;
+
+    letter-spacing: -0.045em;
 }
 
-/* ================= FORM ================= */
 
-.product-form {
-    width: 25rem;
-    max-width: 90%;
-    margin: auto;
-}
-
-.form-control {
-    margin-bottom: 1rem;
-}
-
-.form-control label {
-    display: block;
-    margin-bottom: .5rem;
-    font-weight: bold;
-}
-
-.form-control input {
-    width: 100%;
-    padding: .7rem;
-    border: 1px solid #d7bdb5;
-    border-radius: 6px;
-    background: #fffaf7;
-    font-size: 1rem;
-}
-
-.form-control input:focus {
-    outline: none;
-    border-color: #c68f87;
-}
-
-/* ================= BUTTON ================= */
-
-.btn {
-    display: inline-block;
-    padding: .7rem 1.4rem;
-    border: none;
-    border-radius: 6px;
-    background-color: #d89ca1;
-    color: white;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: .3s;
-}
-
-.btn:hover,
-.btn:active {
-    background-color: #c47d84;
-}
-
-/* ================= PRODUCTS ================= */
+/* =========================================================
+   PRODUCT GRID
+========================================================= */
 
 .grid {
+
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(270px, 1fr)
+        );
+
+    gap: 1.8rem;
+
+    align-items: stretch;
 }
+
+
+/* =========================================================
+   CARD
+========================================================= */
 
 .card {
-    background: #fffaf7;
-    border: 1px solid #e7d7cf;
-    border-radius: 10px;
-    padding: 1.5rem;
-    text-align: center;
-    box-shadow: 0 3px 10px rgba(0,0,0,.06);
+
+    overflow: hidden;
+
+    background: var(--surface);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        var(--radius-lg);
+
+    box-shadow:
+        var(--shadow-sm);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
 }
+
+
+.card:hover {
+
+    transform:
+        translateY(-5px);
+
+    border-color:
+        var(--border-dark);
+
+    box-shadow:
+        var(--shadow-lg);
+}
+
+
+.product-item {
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.card__header {
+
+    padding:
+        1.3rem
+        1.4rem
+        0.9rem;
+}
+
 
 .product__title {
-    color: #8c6464;
-}
-
-.delete-form {
-
-    display: inline;
 
     margin: 0;
 
+    color:
+        var(--espresso);
+
+    font-size: 1.22rem;
+
+    font-weight: 750;
+
+    line-height: 1.3;
+
+    letter-spacing: -0.025em;
+}
+
+
+/* =========================================================
+   PRODUCT IMAGE
+========================================================= */
+
+.card__image {
+
+    width: 100%;
+
+    height: 235px;
+
+    overflow: hidden;
+
+    background:
+        var(--cream-deep);
+}
+
+
+.card__image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.45s ease;
+}
+
+
+.card:hover
+.card__image img {
+
+    transform:
+        scale(1.04);
+}
+
+
+/* =========================================================
+   PRODUCT CONTENT
+========================================================= */
+
+.card__content {
+
+    padding:
+        1.3rem
+        1.4rem;
+
+    flex: 1;
+}
+
+
+.product__price {
+
+    margin-bottom: 0.65rem;
+
+    color:
+        var(--terracotta-dark);
+
+    font-size: 1.3rem;
+
+    font-weight: 800;
+
+    letter-spacing: -0.025em;
+}
+
+
+.product__description {
+
+    color: var(--muted);
+
+    font-size: 0.92rem;
+
+    line-height: 1.65;
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 3;
+
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   CARD ACTIONS
+========================================================= */
+
+.card__actions {
+
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 0.55rem;
+
+    padding:
+        0
+        1.4rem
+        1.4rem;
+}
+
+
+.card__actions form {
+
+    margin: 0;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.btn {
+
+    min-height: 40px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding:
+        0.62rem
+        1rem;
+
+    border:
+        1px solid var(--terracotta);
+
+    border-radius:
+        var(--radius-sm);
+
+    background:
+        var(--terracotta);
+
+    color: #ffffff;
+
+    font: inherit;
+
+    font-size: 0.86rem;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 3px 8px
+        rgba(184, 92, 63, 0.14);
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.btn:hover {
+
+    background:
+        var(--terracotta-dark);
+
+    border-color:
+        var(--terracotta-dark);
+
+    box-shadow:
+        0 5px 12px
+        rgba(184, 92, 63, 0.2);
+}
+
+
+.btn:active {
+
+    transform:
+        translateY(1px);
+}
+
+
+/* =========================================================
+   DELETE BUTTON
+========================================================= */
+
+.delete-form {
+
+    display: inline-flex;
+
+    margin: 0;
+}
+
+
+.delete-form .btn {
+
+    background: transparent;
+
+    color: var(--danger);
+
+    border-color: #dfbbb4;
+
+    box-shadow: none;
+}
+
+
+.delete-form .btn:hover {
+
+    background: #f9e8e4;
+
+    color:
+        var(--danger-dark);
+
+    border-color: #d5a49b;
+}
+
+
+/* =========================================================
+   FORMS
+========================================================= */
+
+.product-form {
+
+    width: 100%;
+
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    padding: 2.3rem;
+
+    background:
+        var(--surface);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        var(--radius-lg);
+
+    box-shadow:
+        var(--shadow-md);
+}
+
+
+.form-control {
+
+    margin-bottom: 1.4rem;
+}
+
+
+.form-control label {
+
+    display: block;
+
+    margin-bottom: 0.5rem;
+
+    color:
+        var(--espresso-soft);
+
+    font-size: 0.9rem;
+
+    font-weight: 700;
+}
+
+
+.form-control input,
+.form-control textarea {
+
+    width: 100%;
+
+    padding:
+        0.85rem
+        0.95rem;
+
+    border:
+        1px solid
+        var(--border-dark);
+
+    border-radius: 10px;
+
+    background: #fffefa;
+
+    color:
+        var(--espresso);
+
+    font: inherit;
+
+    font-size: 0.95rem;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.form-control textarea {
+
+    min-height: 140px;
+
+    resize: vertical;
+}
+
+
+.form-control input:focus,
+.form-control textarea:focus {
+
+    outline: none;
+
+    background: #ffffff;
+
+    border-color:
+        var(--terracotta);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(184, 92, 63, 0.10);
+}
+
+
+/* =========================================================
+   PRODUCT DETAIL PAGE
+========================================================= */
+
+main > .product-item {
+
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    box-shadow:
+        var(--shadow-md);
+}
+
+
+main >
+.product-item
+.card__image {
+
+    height:
+        clamp(
+            320px,
+            50vw,
+            540px
+        );
+}
+
+
+main >
+.product-item
+.product__description {
+
+    display: block;
+
+    overflow: visible;
+
+    max-width: 700px;
+
+    font-size: 1rem;
+}
+
+
+/* =========================================================
+   EMPTY STATES
+========================================================= */
+
+main > h1:only-child {
+
+    padding:
+        6rem
+        1rem;
+
+    text-align: center;
+
+    color:
+        var(--muted);
+
+    font-size: 1.5rem;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media
+(max-width: 720px) {
+
+    .main-header {
+
+        height: 76px;
+
+        padding:
+            0
+            4%;
+    }
+
+
+    .brand__image {
+
+        height: 58px;
+    }
+
+
+    .main-header__item-list {
+
+        gap: 1rem;
+    }
+
+
+    .main-header__item a {
+
+        font-size: 0.82rem;
+    }
+
+
+    main {
+
+        width: 92%;
+
+        margin-top: 2rem;
+    }
+
+
+    .grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .product-form {
+
+        padding: 1.5rem;
+    }
+
+
+    .card__image {
+
+        height: 260px;
+    }
+}
+
+
+@media
+(max-width: 480px) {
+
+    .main-header {
+
+        height: auto;
+
+        min-height: 76px;
+
+        padding:
+            0.6rem
+            4%;
+    }
+
+
+    .main-header__nav {
+
+        gap: 0.7rem;
+    }
+
+
+    .brand__image {
+
+        height: 48px;
+    }
+
+
+    .main-header__item-list {
+
+        gap: 0.7rem;
+    }
+
+
+    .main-header__item a {
+
+        font-size: 0.76rem;
+    }
 }

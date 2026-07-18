@@ -12,13 +12,21 @@ exports.getAddProduct = (req, res, next) => {
 exports.postAddProduct = (req, res, next) => {
 
     const title = req.body.title;
+    const imageUrl = req.body.imageUrl;
+    const price = parseFloat(req.body.price);
+    const description = req.body.description;
 
-    const product = new Product(null,title);
+    const product = new Product(
+        null,
+        title,
+        imageUrl,
+        price,
+        description
+    );
 
     product.save();
 
     res.redirect('/');
-
 };
 
 exports.getEditProduct=(req,res,next)=>{
@@ -40,14 +48,20 @@ exports.getEditProduct=(req,res,next)=>{
 
 exports.postEditProduct = (req, res, next) => {
 
-    // ID comes from the hidden input in edit-product.ejs
     const productId = req.body.productId;
 
-    // Updated title comes from the visible input
     const updatedTitle = req.body.title;
+    const updatedImageUrl = req.body.imageUrl;
+    const updatedPrice = parseFloat(req.body.price);
+    const updatedDescription = req.body.description;
 
-    // Update the existing product directly
-    Product.update(productId, updatedTitle);
+    Product.update(
+        productId,
+        updatedTitle,
+        updatedImageUrl,
+        updatedPrice,
+        updatedDescription
+    );
 
     res.redirect('/');
 };

@@ -1,18 +1,62 @@
 <header class="main-header">
+
     <nav class="main-header__nav">
+
+        <!-- MERCATO LOGO -->
+        <a href="/" class="brand">
+
+            <img
+                src="/images/mercato-logo.png"
+                alt="Mercato"
+                class="brand__image"
+            >
+
+        </a>
+
+
+        <!-- NAVIGATION LINKS -->
         <ul class="main-header__item-list">
+
+            <!-- SHOP -->
             <li class="main-header__item">
-                <a class="<%= path === '/' ? 'active' : '' %>" href="/">
+
+                <a
+                    class="<%= path === '/' ? 'active' : '' %>"
+                    href="/"
+                >
                     Shop
                 </a>
+
             </li>
 
+
+            <!-- ADD PRODUCT -->
             <li class="main-header__item">
-                <a class="<%= path === '/admin/add-product' ? 'active' : '' %>"
-                   href="/admin/add-product">
+
+                <a
+                    class="<%= path === '/admin/add-product' ? 'active' : '' %>"
+                    href="/admin/add-product"
+                >
                     Add Product
                 </a>
+
             </li>
+
+
+            <!-- CART -->
+            <li class="main-header__item">
+
+                <a
+                    class="<%= path === '/cart' ? 'active' : '' %>"
+                    href="/cart"
+                >
+                    Cart
+                </a>
+
+            </li>
+
         </ul>
+
     </nav>
+
 </header>

@@ -45,13 +45,34 @@ exports.postCart=(req,res,next)=>{
 
 };
 
-exports.getCart=(req,res,next)=>{
+exports.getCart = (req, res, next) => {
 
-    const cartProducts=Cart.getProducts();
-    
-    res.render('shop/cart',{
+    // Retrieve all products currently in the cart
+    const cartProducts = Cart.getProducts();
+
+    // Calculate the total price of all cart products
+    const totalPrice = cartProducts.reduce(
+        (total, product) => total + product.price,
+        0
+    );
+
+    res.render('shop/cart', {
+
         pageTitle: 'Your Cart',
+
         path: '/cart',
-        products: cartProducts
+
+        products: cartProducts,
+
+        totalPrice: totalPrice
+
     });
+};
+
+exports.removeProductFromCart=(req,res,next)=>{
+    const pid=req.params.productId;
+
+    Cart.removeProductFromCart(pid);
+
+    res.redirect('/cart');
 };

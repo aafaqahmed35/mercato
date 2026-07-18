@@ -19,11 +19,56 @@
 
         </div>
 
+        <div class="form-control">
+
+            <label for="imageUrl">Image URL</label>
+
+            <input
+                type="text"
+                name="imageUrl"
+                id="imageUrl"
+                value="<%= product.imageUrl %>"
+                required
+            >
+
+        </div>
+
+        <div class="form-control">
+
+            <label for="price">Price</label>
+
+            <input
+                type="number"
+                name="price"
+                id="price"
+                step="0.01"
+                min="0"
+                value="<%= product.price %>"
+                required
+            >
+
+        </div>
+
+        <div class="form-control">
+
+            <label for="description">Description</label>
+
+            <textarea
+                name="description"
+                id="description"
+                rows="5"
+                required
+            ><%= product.description %></textarea>
+
+        </div>
+
+        <!-- Tells the backend which existing product to update -->
         <input
             type="hidden"
             name="productId"
             value="<%= product.id %>"
         >
+
         <button class="btn" type="submit">
             Update Product
         </button>

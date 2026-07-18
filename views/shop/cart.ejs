@@ -1,35 +1,192 @@
 <%- include('../includes/head') %>
+
+<link rel="stylesheet" href="/css/cart.css">
+
 <%- include('../includes/navigation') %>
 
-<main>
+<main class="cart-page">
 
     <% if (products.length > 0) { %>
 
-        <h1>Your Cart</h1>
+        <div class="cart-header">
 
-        <div class="grid">
+            <h1>Your Cart</h1>
 
-            <% for (let product of products) { %>
-
-                <article class="card product-item">
-
-                    <header class="card__header">
-
-                        <h1 class="product__title">
-                            <%= product.title %>
-                        </h1>
-
-                    </header>
-
-                </article>
-
-            <% } %>
+            <p>
+                Review your selected items before checkout.
+            </p>
 
         </div>
 
+
+        <div class="cart-layout">
+
+            <!-- =========================
+                 CART PRODUCTS
+            ========================== -->
+
+            <section class="cart-items">
+
+                <% for (let product of products) { %>
+
+                    <article class="cart-item">
+
+                        <!-- Product Image -->
+
+                        <div class="cart-item__image">
+
+                            <img
+                                src="<%= product.imageUrl %>"
+                                alt="<%= product.title %>"
+                            >
+
+                        </div>
+
+
+                        <!-- Product Information -->
+
+                        <div class="cart-item__info">
+
+                            <h2 class="cart-item__title">
+                                <%= product.title %>
+                            </h2>
+
+                            <p class="cart-item__description">
+                                <%= product.description %>
+                            </p>
+
+                            <p class="cart-item__price">
+                                $<%= product.price.toFixed(2) %>
+                            </p>
+
+                        </div>
+
+
+                        <!-- Remove Product -->
+
+                        <div class="cart-item__actions">
+
+                            <form
+                                action="/cart-delete-item/<%= product.id %>"
+                                method="POST"
+                            >
+
+                                <button
+                                    class="cart-remove-btn"
+                                    type="submit"
+                                >
+                                    Remove
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </article>
+
+                <% } %>
+
+            </section>
+
+
+            <!-- =========================
+                 ORDER SUMMARY
+            ========================== -->
+
+            <aside class="cart-summary">
+
+                <h2 class="cart-summary__title">
+                    Order Summary
+                </h2>
+
+
+                <div class="cart-summary__row">
+
+                    <span>
+                        Items
+                    </span>
+
+                    <span>
+                        <%= products.length %>
+                    </span>
+
+                </div>
+
+
+                <div class="cart-summary__row">
+
+                    <span>
+                        Subtotal
+                    </span>
+
+                    <span>
+                        $<%= totalPrice.toFixed(2) %>
+                    </span>
+
+                </div>
+
+
+                <div class="cart-summary__row">
+
+                    <span>
+                        Shipping
+                    </span>
+
+                    <span>
+                        Free
+                    </span>
+
+                </div>
+
+
+                <div class="cart-summary__divider"></div>
+
+
+                <div class="cart-summary__total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <span class="cart-summary__price">
+                        $<%= totalPrice.toFixed(2) %>
+                    </span>
+
+                </div>
+
+
+                <!-- Visual only for now.
+                     Checkout backend comes later. -->
+
+                <button
+                    class="checkout-btn"
+                    type="button"
+                >
+                    Proceed to Checkout
+                </button>
+
+            </aside>
+
+        </div>
+
+
     <% } else { %>
 
-        <h1>Your Cart is Empty!</h1>
+        <!-- Empty Cart State -->
+
+        <section class="empty-cart">
+
+            <h1>Your cart is empty</h1>
+
+            <p>
+                Discover something you love and add it to your cart.
+            </p>
+
+            <a href="/" class="btn">
+                Continue Shopping
+            </a>
+
+        </section>
 
     <% } %>
 
