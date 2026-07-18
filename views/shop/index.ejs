@@ -12,10 +12,30 @@
                 <article class="card product-item">
 
                     <header class="card__header">
+
                         <h1 class="product__title">
                             <%= product.title %>
                         </h1>
+
                     </header>
+
+                    <div class="card__actions">
+
+                        <!-- Dynamic link using this product's unique ID -->
+                        <a
+                            href="/products/<%= product.id %>"
+                            class="btn"
+                        >
+                            Details
+                        </a>
+                        <a
+                            href="/admin/edit-product/<%= product.id %>"
+                            class="btn"
+>
+                            Edit
+                        </a>
+
+                    </div>
 
                 </article>
 
