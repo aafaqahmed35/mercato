@@ -1,68 +1,35 @@
-const products = [];
+// models/product.js
 
-module.exports = class Product {
+const Sequelize = require('sequelize');
+const sequelize = require('../util/database');
 
-    constructor(id, title, imageUrl, price, description) {
-        this.id = id;
-        this.title = title;
-        this.imageUrl = imageUrl;
-        this.price = price;
-        this.description = description;
+const Product = sequelize.define('product', {
+    id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+    },
+
+    title: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+
+    price: {
+        type: Sequelize.DOUBLE,
+        allowNull: false
+    },
+
+    imageUrl: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+
+    description: {
+        type: Sequelize.TEXT,
+        allowNull: false
     }
+});
 
-    save() {
-
-        if (this.id) {
-
-            const productIndex = products.findIndex(
-                product => product.id === this.id
-            );
-
-            products[productIndex] = this;
-
-        } else {
-
-            this.id = Math.random().toString();
-
-            products.push(this);
-        }
-    }
-
-    static update(id, title, imageUrl, price, description) {
-
-        const product = products.find(
-            product => product.id === id
-        );
-
-        if (product) {
-            product.title = title;
-            product.imageUrl = imageUrl;
-            product.price = price;
-            product.description = description;
-        }
-    }
-
-    static fetchAll() {
-
-        return products;
-    }
-
-    static findById(id) {
-
-        return products.find(
-            product => product.id === id
-        );
-    }
-
-    static deleteById(id) {
-
-        const productIndex = products.findIndex(
-            product => product.id === id
-        );
-
-        if (productIndex >= 0) {
-            products.splice(productIndex, 1);
-        }
-    }
-
-};
+module.exports = Product;

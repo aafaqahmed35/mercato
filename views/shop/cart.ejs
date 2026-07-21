@@ -55,8 +55,44 @@
                                 <%= product.description %>
                             </p>
 
+
+                            <!-- Unit Price -->
+
                             <p class="cart-item__price">
                                 $<%= product.price.toFixed(2) %>
+                            </p>
+
+
+                            <!--
+                                Quantity now comes from
+                                the CartItem junction table.
+
+                                Example:
+
+                                Product:
+                                    Nike Cleats
+
+                                CartItem:
+                                    quantity = 3
+                            -->
+
+                            <p class="cart-item__quantity">
+                                Quantity:
+                                <%= product.cartItem.quantity %>
+                            </p>
+
+
+                            <!-- Line Total -->
+
+                            <p class="cart-item__subtotal">
+
+                                Subtotal:
+
+                                $<%= (
+                                    product.price *
+                                    product.cartItem.quantity
+                                ).toFixed(2) %>
+
                             </p>
 
                         </div>
@@ -107,7 +143,14 @@
                     </span>
 
                     <span>
-                        <%= products.length %>
+
+                        <%= products.reduce(
+                            (total, product) =>
+                                total +
+                                product.cartItem.quantity,
+                            0
+                        ) %>
+
                     </span>
 
                 </div>
@@ -155,8 +198,12 @@
                 </div>
 
 
-                <!-- Visual only for now.
-                     Checkout backend comes later. -->
+                <!--
+                    Visual only for now.
+
+                    Real checkout/payment processing
+                    will be implemented later.
+                -->
 
                 <button
                     class="checkout-btn"
@@ -172,7 +219,9 @@
 
     <% } else { %>
 
-        <!-- Empty Cart State -->
+        <!-- =========================
+             EMPTY CART
+        ========================== -->
 
         <section class="empty-cart">
 

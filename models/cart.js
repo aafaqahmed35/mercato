@@ -1,26 +1,30 @@
-const cart=[];
+// models/cart.js
 
-module.exports=class Cart{
+// Import Sequelize
+const Sequelize = require('sequelize');
 
-    static addProduct(product){
-        cart.push(product);
+// Import our configured database connection
+const sequelize = require('../util/database');
+
+
+// --------------------------------------------------
+// CART MODEL
+// --------------------------------------------------
+
+const Cart = sequelize.define('cart', {
+
+    // Primary key
+    id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
     }
 
-    static getProducts(){
-        return cart;
-    }
-    static removeProductFromCart(id) {
+});
 
-    const productIndex = cart.findIndex(
-        product => product.id === id
-    );
 
-    if (productIndex >= 0) {
-        cart.splice(productIndex, 1);
-    }
-}
-     
-};
-
+// Export the Sequelize model
+module.exports = Cart;
 
 
